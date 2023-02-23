@@ -8,6 +8,7 @@ pygame.init()
 #Creating Display 
 screen = pygame.display.set_mode((800,400)) # Creates window((width,height))
 pygame.display.set_caption('Demo Game') #Title of Window
+clock = pygame.time.Clock()
 
 #Draw all elements and update everything
 while True: 
@@ -16,3 +17,4 @@ while True:
             pygame.quit
             exit()
     pygame.display.update()
+    clock.tick(60)
