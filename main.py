@@ -10,7 +10,8 @@ screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
 pygame.display.set_caption('Demo Game') #Title of Window
 clock = pygame.time.Clock()
 
-test_surface = pygame.image.load('graphics/Sky.png')
+sky_surface = pygame.image.load('graphics/Sky.png')
+ground_surface = pygame.image.load('graphics/ground.png')
 
 """
 #Surfaces Example 
@@ -25,7 +26,8 @@ while True:
             pygame.quit
             exit()
 
-    screen.blit(test_surface, (0,0)) # (0,0) is top left 
+    screen.blit(sky_surface, (0,0)) # (0,0) is top left 
+    screen.blit(ground_surface, (0,300))
     #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps)
