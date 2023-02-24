@@ -11,10 +11,10 @@ pygame.display.set_caption('Demo Game') #Title of Window
 clock = pygame.time.Clock()
 
 #Surfaces and Fonts 
-test_font = pygame.font.Font('font/Pixeltype.ttf.webloc',50) #(type, size)
+test_font = pygame.font.Font('font/Pixeltype.ttf',50) #(type, size)
 sky_surface = pygame.image.load('graphics/Sky.png')
 ground_surface = pygame.image.load('graphics/ground.png')
-text_surface = test_font.render('Demo Game', True, 'Green') #(text, AA, color)
+text_surface = test_font.render('Demo Game', False, 'Green') #(text, AA, color)
 #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
 
 """
