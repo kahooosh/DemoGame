@@ -1,5 +1,3 @@
-#BASIC SET UP FOR GAME 
-
 #Importing and initiallizing pygame 
 import pygame, sys 
 from sys import exit 
@@ -15,7 +13,8 @@ test_font = pygame.font.Font('graphics/Pixeltype.ttf',50) #(type, size)
 sky_surface = pygame.image.load('graphics/Sky.png')
 ground_surface = pygame.image.load('graphics/ground.png')
 text_surface = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
-#AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
+    #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
+mana_surface = pygame.image.load('graphics/IMG_1306.jpeg')
 
 """
 #Surfaces Example 
@@ -34,6 +33,7 @@ while True:
     screen.blit(sky_surface, (0,0)) # (0,0) is top left 
     screen.blit(ground_surface, (0,300))
     screen.blit(text_surface, (300,50))
+    screen.blit(mana_surface, (600,250))
 
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
