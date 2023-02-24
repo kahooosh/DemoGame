@@ -14,7 +14,7 @@ sky_surface = pygame.image.load('graphics/Sky.png')
 ground_surface = pygame.image.load('graphics/ground.png')
 text_surface = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
     #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
-enemyOne_surface = pygame.image.load('graphics/IMG_1306.jpeg')
+enemyOne_surface = pygame.image.load('graphics/snail1.png')
 
 """
 #Surfaces Example 
