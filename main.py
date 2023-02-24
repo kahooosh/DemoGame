@@ -35,7 +35,7 @@ while True:
     screen.blit(ground_surface, (0,300))
     screen.blit(text_surface, (300,50))
     en1_x_pos -= 4
-    if en1_x_pos < 100: en1_x_pos = 800     
+    if en1_x_pos < -100: en1_x_pos = 800     
     screen.blit(en1_surface, (en1_x_pos,250))
 
     pygame.display.update()
