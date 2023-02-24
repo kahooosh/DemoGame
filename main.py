@@ -33,7 +33,7 @@ while True:
 #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
     screen.blit(sky_surface, (0,0)) # (0,0) is top left 
     screen.blit(ground_surface, (0,300))
-    screen.nlot(text_surface, (300,50))
+    screen.blit(text_surface, (300,50))
 
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
