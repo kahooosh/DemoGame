@@ -40,7 +40,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit
             exit()
-        if event.type == pygame.MOUSEBUTTONDOW: #pos of mouse when moving 
+        if event.type == pygame.MOUSEBUTTONDOWN: #pos of mouse when moving 
             if player_rect.collidepoint(event.pos): 
                 player_gravity = -20
         if event.type == pygame.KEYDOWN:
