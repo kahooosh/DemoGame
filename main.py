@@ -19,7 +19,7 @@ en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1
 en1_rect = en1_surf.get_rect(bottomright = (600,300))
 
 player_surf = pygame.image.load('graphics/player_walk_1.png') #player
-player_rect = player_surf.get_rect(topleft = (80,300))
+player_rect = player_surf.get_rect(midbottom = (80,300))
     #pygame.Rect(); player rectangle 
     #(left,top,width,height)
     #(topleft = (x,y))
