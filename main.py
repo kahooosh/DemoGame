@@ -41,9 +41,9 @@ while True:
             pygame.quit
             exit()
         if event.type == pygame.MOUSEBUTTONDOWN: #pos of mouse when moving 
-            if player_rect.collidepoint(event.pos): 
+            if player_rect.collidepoint(event.pos) and player_rect.bottom >= 300: 
                 player_gravity = -20
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN and player_rect.bottom >= 300:
             if event.key == pygame.K_SPACE:
                 player_gravity = -20
 
@@ -71,8 +71,11 @@ while True:
         player_rect.bottom = 300
     screen.blit(player_surf,player_rect)
 
+    #Collisions
+    if en1_rect.colliderect(player_rect): 
+        pygame.quit
+        exit()
 
- 
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
        
