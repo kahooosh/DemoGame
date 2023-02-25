@@ -15,6 +15,7 @@ ground_surf = pygame.image.load('graphics/ground.png').convert()
 
 score_surf = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
     #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
+score_rect = score_surf.get_rect(center = (400,50))
 
 
 en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
@@ -46,7 +47,7 @@ while True:
     #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
     screen.blit(sky_surf, (0,0)) # (0,0) is top left 
     screen.blit(ground_surf, (0,300))
-    screen.blit(score_surf, (300,50))
+    screen.blit(score_surf,score_rect) 
 
     """
     Another way to move en1 
