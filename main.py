@@ -15,7 +15,7 @@ ground_surface = pygame.image.load('graphics/ground.png').convert()
 text_surface = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
     #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
 
-en1_surface = pygame.image.load('graphics/snail1.png').convert_aplpha() #enemy 1 
+en1_surface = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
 en1_x_pos = 600 #pos of en1 
 player_surf = pygame.image.load('graphics/player_walk_one.png') #player
 player_rect = player_surf.get_rect(topleft = (x,y))
