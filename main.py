@@ -46,7 +46,7 @@ while True:
         """
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                printa("jump")
+                player_gravity = -20
 
     #Putting Surfaces and Rectangles on Display 
     screen.blit(sky_surf, (0,0)) # (0,0) is top left 
