@@ -10,15 +10,16 @@ clock = pygame.time.Clock()
 
 #Surfaces 
 test_font = pygame.font.Font('graphics/Pixeltype.ttf',50) #(type, size)
-sky_surface = pygame.image.load('graphics/Sky.png').convert()
-ground_surface = pygame.image.load('graphics/ground.png').convert()
-text_surface = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
+sky_surf = pygame.image.load('graphics/Sky.png').convert()
+ground_surf = pygame.image.load('graphics/ground.png').convert()
+text_surf = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
     #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
 
-en1_surface = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
-en1_x_pos = 600 #pos of en1 
+en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
+en1_rect = en1_surf.get_rect(bottomright = (600,300))
+
 player_surf = pygame.image.load('graphics/player_walk_1.png') #player
-player_rect = player_surf.get_rect(topleft = (80,200))
+player_rect = player_surf.get_rect(topleft = (80,300))
     #pygame.Rect(); player rectangle 
     #(left,top,width,height)
     #(topleft = (x,y))
@@ -37,13 +38,19 @@ while True:
             exit()
 
     #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
-    screen.blit(sky_surface, (0,0)) # (0,0) is top left 
-    screen.blit(ground_surface, (0,300))
-    screen.blit(text_surface, (300,50))
+    screen.blit(sky_surf, (0,0)) # (0,0) is top left 
+    screen.blit(ground_surf, (0,300))
+    screen.blit(text_surf, (300,50))
+
+    en1_rect.x -= 4  
+    if en1_rect.right <= 0: en1_rect.left = 800 
+    screen.blit(en1_surf,en1_rect) 
+    screen.blit(player_surf,player_rect)
+    """
+    Another way to move en1 
     en1_x_pos -= 4 #moves to left every loop
     if en1_x_pos < -100: en1_x_pos = 800 #brings back en1 to the right side 
-    screen.blit(en1_surface, (en1_x_pos,250)) 
-    screen.blit(player_surf,player_rect)
+    """
 
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
