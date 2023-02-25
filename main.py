@@ -13,7 +13,7 @@ test_font = pygame.font.Font('graphics/Pixeltype.ttf',50) #(type, size)
 sky_surf = pygame.image.load('graphics/Sky.png').convert()
 ground_surf = pygame.image.load('graphics/ground.png').convert()
 
-score_surf = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
+score_surf = test_font.render('Demo Game', False, (64,64,64)) #(text, AA, color)
     #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
 score_rect = score_surf.get_rect(center = (400,50))
 
@@ -47,8 +47,8 @@ while True:
     #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
     screen.blit(sky_surf, (0,0)) # (0,0) is top left 
     screen.blit(ground_surf, (0,300))
-    pygame.draw.rect(screen,'Pink',score_rect) #(display, color, rect)
-    pygame.draw.rect(screen,'Pink',score_rect,10) #border width
+    pygame.draw.rect(screen,'c0e8ec',score_rect) #(display, color, rect)
+    pygame.draw.rect(screen,'c0e8ec',score_rect,10,50) #border width
     screen.blit(score_surf,score_rect) 
 
     """
