@@ -40,10 +40,9 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit
             exit()
-        """
-        if event.type == pygame.MOUSEMOTION: #pos of mouse when moving 
-            if player_rect.collidepoint(mouse_pos): print("collision")
-        """
+        if event.type == pygame.MOUSEBUTTONDOW: #pos of mouse when moving 
+            if player_rect.collidepoint(event.pos): 
+                player_gravity = -20
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 player_gravity = -20
@@ -70,8 +69,6 @@ while True:
     player_rect.y += player_gravity
     screen.blit(player_surf,player_rect)
 
-
-    
     """ 
     keys = pygame.key.get_pressed()
     keys[pygame.K_SPACE]: print("jump")
