@@ -67,6 +67,7 @@ while True:
 
     #Player Movement 
     player_gravity += 1 
+    player_rect.y += player_gravity
     screen.blit(player_surf,player_rect)
 
 
