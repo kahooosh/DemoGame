@@ -67,7 +67,7 @@ while True:
     #Player Movement 
     player_gravity += 1 
     player_rect.y += player_gravity
-    if player_rect >= 300:
+    if player_rect.bottom >= 300:
         player_rect.bottem = 300
     screen.blit(player_surf,player_rect)
 
