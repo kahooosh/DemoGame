@@ -47,6 +47,7 @@ while True:
     #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
     screen.blit(sky_surf, (0,0)) # (0,0) is top left 
     screen.blit(ground_surf, (0,300))
+    pygame.draw.rect(screen,'Pink',score_rect) #(display, color, rect)
     screen.blit(score_surf,score_rect) 
 
     """
