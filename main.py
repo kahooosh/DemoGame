@@ -17,7 +17,7 @@ text_surface = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
 
 en1_surface = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
 en1_x_pos = 600 #pos of en1 
-player_surf = pygame.image.load('graphics/player_walk_one.png') #player
+player_surf = pygame.image.load('graphics/player_walk_1.png') #player
 player_rect = player_surf.get_rect(topleft = (x,y))
     #pygame.Rect(); player rectangle 
     #(left,top,width,height)
