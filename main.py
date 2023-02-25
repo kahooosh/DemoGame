@@ -67,19 +67,11 @@ while True:
     #Player Movement 
     player_gravity += 1 
     player_rect.y += player_gravity
+    if player_rect >= 300:
+        player_rect.bottem = 300
     screen.blit(player_surf,player_rect)
 
-    """ 
-    keys = pygame.key.get_pressed()
-    keys[pygame.K_SPACE]: print("jump")
 
-    #if player_rect.colliderect(en1_rect): 
-        #collision of player and en1
-   
-    mouse_pos = pygame.mouse.get_pos() #gets mouse pos
-    if player_rect.collidepoint(mouse_pos): #((x,y))
-        print("collision")
-    """
  
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
