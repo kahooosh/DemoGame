@@ -26,9 +26,10 @@ player_rect = player_surf.get_rect(midbottom = (80,300))
     #pygame.Rect(); player rectangle 
     #(left,top,width,height)
     #(topleft = (x,y))
+player_gravity = 0 
 
 """
-#Surfaces Example 
+# Surfaces Example 
 test_surface = pygame.Surface((100,200)) #((w,h))
 test_surface.fill('Red') #Adds color 
 """
@@ -43,29 +44,40 @@ while True:
         if event.type == pygame.MOUSEMOTION: #pos of mouse when moving 
             if player_rect.collidepoint(mouse_pos): print("collision")
         """
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                printa("jump")
 
-    #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
+    #Putting Surfaces and Rectangles on Display 
     screen.blit(sky_surf, (0,0)) # (0,0) is top left 
+        #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
     screen.blit(ground_surf, (0,300))
     pygame.draw.rect(screen,'#c0e8ec',score_rect) #(display, color, rect)
     pygame.draw.rect(screen,'#c0e8ec',score_rect,10,50) #border width
     screen.blit(score_surf,score_rect) 
 
-    """
-    Another way to move en1 
+    #Enemy_1 Movememnt 
+    en1_rect.x -= 4  
+    if en1_rect.right <= 0: en1_rect.left = 800 
+    screen.blit(en1_surf,en1_rect) 
+    """ Another way to move en1: 
     en1_x_pos -= 4 #moves to left every loop
     if en1_x_pos < -100: en1_x_pos = 800 #brings back en1 to the right side 
     """
 
-    en1_rect.x -= 4  
-    if en1_rect.right <= 0: en1_rect.left = 800 
-    screen.blit(en1_surf,en1_rect) 
+    #Player Movement 
+    player_gravity += 1 
     screen.blit(player_surf,player_rect)
+
+
+    
+    """ 
+    keys = pygame.key.get_pressed()
+    keys[pygame.K_SPACE]: print("jump")
 
     #if player_rect.colliderect(en1_rect): 
         #collision of player and en1
-
-    """    
+   
     mouse_pos = pygame.mouse.get_pos() #gets mouse pos
     if player_rect.collidepoint(mouse_pos): #((x,y))
         print("collision")
