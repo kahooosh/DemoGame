@@ -8,12 +8,14 @@ screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
 pygame.display.set_caption('Demo Game') #Title of Window
 clock = pygame.time.Clock()
 
-#Surfaces 
+#Surfaces and Rectangles
 test_font = pygame.font.Font('graphics/Pixeltype.ttf',50) #(type, size)
 sky_surf = pygame.image.load('graphics/Sky.png').convert()
 ground_surf = pygame.image.load('graphics/ground.png').convert()
-text_surf = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
+
+score_surf = test_font.render('Demo Game', False, 'Black ') #(text, AA, color)
     #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
+
 
 en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
 en1_rect = en1_surf.get_rect(bottomright = (600,300))
@@ -36,11 +38,15 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit
             exit()
+        """
+        if event.type == pygame.MOUSEMOTION: #pos of mouse when moving 
+            if player_rect.collidepoint(mouse_pos): print("collision")
+        """
 
     #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
     screen.blit(sky_surf, (0,0)) # (0,0) is top left 
     screen.blit(ground_surf, (0,300))
-    screen.blit(text_surf, (300,50))
+    screen.blit(score_surf, (300,50))
 
     """
     Another way to move en1 
@@ -53,11 +59,15 @@ while True:
     screen.blit(en1_surf,en1_rect) 
     screen.blit(player_surf,player_rect)
 
-    #if player_rect.colliderect(en1_rect):
-    mouse_pos = pygame.mouse.get_pos()
-    if player_rect.collidepoint(mouse_pos): #((x,y)):
+    #if player_rect.colliderect(en1_rect): 
+        #collision of player and en1
+
+    """    
+    mouse_pos = pygame.mouse.get_pos() #gets mouse pos
+    if player_rect.collidepoint(mouse_pos): #((x,y))
         print("collision")
-    
+    """
+ 
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
        
