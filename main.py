@@ -48,6 +48,7 @@ while True:
     screen.blit(sky_surf, (0,0)) # (0,0) is top left 
     screen.blit(ground_surf, (0,300))
     pygame.draw.rect(screen,'Pink',score_rect) #(display, color, rect)
+    pygame.draw.rect(screen,'Pink',score_rect,10) #border width
     screen.blit(score_surf,score_rect) 
 
     """
