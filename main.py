@@ -42,16 +42,22 @@ while True:
     screen.blit(ground_surf, (0,300))
     screen.blit(text_surf, (300,50))
 
-    en1_rect.x -= 4  
-    if en1_rect.right <= 0: en1_rect.left = 800 
-    screen.blit(en1_surf,en1_rect) 
-    screen.blit(player_surf,player_rect)
     """
     Another way to move en1 
     en1_x_pos -= 4 #moves to left every loop
     if en1_x_pos < -100: en1_x_pos = 800 #brings back en1 to the right side 
     """
 
+    en1_rect.x -= 4  
+    if en1_rect.right <= 0: en1_rect.left = 800 
+    screen.blit(en1_surf,en1_rect) 
+    screen.blit(player_surf,player_rect)
+
+    #if player_rect.colliderect(en1_rect):
+    mouse_pos = pygame.mouse.get_pos()
+    if player_rect.collidepoint(mouse_pos): #((x,y)):
+        print("collision")
+    
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
        
