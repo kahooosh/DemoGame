@@ -26,7 +26,7 @@ player_rect = player_surf.get_rect(midbottom = (80,300))
     #pygame.Rect(); player rectangle 
     #(left,top,width,height)
     #(topleft = (x,y))
-#player_gravity = 0 
+player_gravity = 0 
 
 """
 # Surfaces Example 
