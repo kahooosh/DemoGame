@@ -7,6 +7,7 @@ pygame.init()
 screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
 pygame.display.set_caption('Demo Game') #Title of Window
 clock = pygame.time.Clock()
+game_active = True
 
 #Surfaces and Rectangles
 test_font = pygame.font.Font('graphics/Pixeltype.ttf',50) #(type, size)
@@ -47,34 +48,36 @@ while True:
             if event.key == pygame.K_SPACE:
                 player_gravity = -20
 
-    #Putting Surfaces and Rectangles on Display 
-    screen.blit(sky_surf, (0,0)) # (0,0) is top left 
-        #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
-    screen.blit(ground_surf, (0,300))
-    pygame.draw.rect(screen,'#c0e8ec',score_rect) #(display, color, rect)
-    pygame.draw.rect(screen,'#c0e8ec',score_rect,10,50) #border width
-    screen.blit(score_surf,score_rect) 
+    if game_active:
+        #Putting Surfaces and Rectangles on Display 
+        screen.blit(sky_surf, (0,0)) # (0,0) is top left 
+            #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
+        screen.blit(ground_surf, (0,300))
+        pygame.draw.rect(screen,'#c0e8ec',score_rect) #(display, color, rect)
+        pygame.draw.rect(screen,'#c0e8ec',score_rect,10,50) #border width
+        screen.blit(score_surf,score_rect) 
 
-    #Enemy_1 Movememnt 
-    en1_rect.x -= 4  
-    if en1_rect.right <= 0: en1_rect.left = 800 
-    screen.blit(en1_surf,en1_rect) 
-    """ Another way to move en1: 
-    en1_x_pos -= 4 #moves to left every loop
-    if en1_x_pos < -100: en1_x_pos = 800 #brings back en1 to the right side 
-    """
+        #Enemy_1 Movememnt 
+        en1_rect.x -= 4  
+        if en1_rect.right <= 0: en1_rect.left = 800 
+        screen.blit(en1_surf,en1_rect) 
+        """ Another way to move en1: 
+        en1_x_pos -= 4 #moves to left every loop
+        if en1_x_pos < -100: en1_x_pos = 800 #brings back en1 to the right side 
+        """
 
-    #Player Movement 
-    player_gravity += 1 
-    player_rect.y += player_gravity
-    if player_rect.bottom >= 300:
-        player_rect.bottom = 300
-    screen.blit(player_surf,player_rect)
+        #Player Movement 
+        player_gravity += 1 
+        player_rect.y += player_gravity
+        if player_rect.bottom >= 300:
+            player_rect.bottom = 300
+        screen.blit(player_surf,player_rect)
 
-    #Collisions
-    if en1_rect.colliderect(player_rect): 
-        pygame.quit
-        exit()
+        #Collisions
+        if en1_rect.colliderect(player_rect): 
+            game_active = False 
+    else:
+        screen.fill('Yellow')
 
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
