@@ -25,7 +25,7 @@ ground_surf = pygame.image.load('graphics/ground.png').convert()
 
 game_title = test_font.render('Pixel Runner',False,(37,56,74))
 game_title = pygame.transform.rotozoom(game_title,0,2)
-game_title_rect = game_title.get.rect(center = (400,60))
+game_title_rect = game_title.get_rect(center = (400,60))
 
 game_over = test_font.render('GAME OVER',False,(37,56,74))
 game_over = pygame.transform.rotozoom(game_over,0,2)
