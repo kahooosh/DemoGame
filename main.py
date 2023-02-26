@@ -4,7 +4,7 @@ from sys import exit
 pygame.init()
 
 def display_score():
-    current_time = pygame.time.gets_ticks()
+    current_time = pygame.time.get_ticks()
     score_surf = test_font.render(f'{current_time}',False,(64,64,64))
     score_rect = score_surf.get_rect(center = (400,50))
     screen.blit(score_surf,score_rect)
