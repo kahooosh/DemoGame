@@ -65,9 +65,12 @@ while True:
         screen.blit(sky_surf, (0,0)) # (0,0) is top left 
             #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
         screen.blit(ground_surf, (0,300))
+        """
         pygame.draw.rect(screen,'#c0e8ec',score_rect) #(display, color, rect)
         pygame.draw.rect(screen,'#c0e8ec',score_rect,10,50) #border width
         screen.blit(score_surf,score_rect) 
+        """
+        display_score()
 
         #Enemy_1 Movememnt 
         en1_rect.x -= 4  
