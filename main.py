@@ -22,10 +22,11 @@ sky_surf = pygame.image.load('graphics/Sky.png').convert()
 ground_surf = pygame.image.load('graphics/ground.png').convert()
 
 
-score_surf = test_font.render('Demo Game', False, (64,64,64)) #(text, AA, color)
+score_surf = test_font.render('Demo Game', False, (64,64,54)) #(text, AA, color)
     #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
 score_rect = score_surf.get_rect(center = (400,50))
 game_over = test_font.render('GAME OVER',False,'Black')
+game_over = pygame.transforn.rotozoom(game_over,0,2)
 game_over_rect = game_over.get_rect(center = (400,50))
 
 
