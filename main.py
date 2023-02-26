@@ -4,7 +4,11 @@ from sys import exit
 pygame.init()
 
 def display_score():
-     pygame.time.gets_ticks()
+    current_time = pygame.time.gets_ticks()
+    score_surf = test_font.render(f'{current_time}',False,(64,64,64))
+    score_rect = score_surf.get_rect(center = (400,50))
+    screen.blit(score_surf,score_rect)
+    print()
 
 #Creating Display 
 screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
@@ -17,10 +21,11 @@ test_font = pygame.font.Font('graphics/Pixeltype.ttf',50) #(type, size)
 sky_surf = pygame.image.load('graphics/Sky.png').convert()
 ground_surf = pygame.image.load('graphics/ground.png').convert()
 
+"""
 score_surf = test_font.render('Demo Game', False, (64,64,64)) #(text, AA, color)
     #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
 score_rect = score_surf.get_rect(center = (400,50))
-
+"""
 
 en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
 en1_rect = en1_surf.get_rect(bottomright = (600,300))
