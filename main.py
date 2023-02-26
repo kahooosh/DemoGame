@@ -37,7 +37,7 @@ player_rect = player_surf.get_rect(midbottom = (80,300))
     #(topleft = (x,y))
 player_gravity = 0 
 player_stand = pygame.image.load('graphics/player_stand.png').convert_alpha()
-player_stand = pygame.transform.rotozoom(player_stand,0,2) #(surf,rotation,scale); scales and rotate 
+player_stand = pygame.transform.rotozoom(player_stand,0,1.5) #(surf,rotation,scale); scales and rotate 
 player_stand_rect = player_stand.get_rect(center = (400,200))
 
 """
@@ -99,7 +99,7 @@ while True:
     else:
         screen.fill((94,129,162))
         screen.blit(player_stand,player_stand_rect)
-        
+
 
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
