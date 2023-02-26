@@ -22,12 +22,14 @@ sky_surf = pygame.image.load('graphics/Sky.png').convert()
 ground_surf = pygame.image.load('graphics/ground.png').convert()
 
 score_surf = test_font.render('Demo Game', False, (64,64,64)) #(text, AA, color)
-    #AA: anti-aliasing; smoothing edges of the text (put true for non-pixel and false for other)
 score_rect = score_surf.get_rect(center = (400,50))
 
 game_over = test_font.render('GAME OVER',False,(37,56,74))
 game_over = pygame.transform.rotozoom(game_over,0,2)
 game_over_rect = game_over.get_rect(center = (400,60))
+
+press_space = test_font.render('Press space bar to restart',False,'White')
+press_space_rect = press_space.get_rect(center = (400,300))
 
 en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
 en1_rect = en1_surf.get_rect(bottomright = (600,300))
@@ -102,6 +104,7 @@ while True:
         screen.fill((94,129,162))
         screen.blit(player_stand,player_stand_rect)
         screen.blit(game_over,game_over_rect)
+        screen.blit(press_space,press_space_rect)
 
 
 
