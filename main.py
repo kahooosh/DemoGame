@@ -105,18 +105,14 @@ while True:
         if en1_rect.colliderect(player_rect): 
             game_active = False 
     
-    elif score == 0:
-        screen.fill((94,129,162))
-        screen.blit(player_stand,player_stand_rect)
-        screen.blit(press_space,press_space_rect)
-
     else:
         screen.fill((94,129,162))
         screen.blit(player_stand,player_stand_rect)
         score_message = test_font.render(f'Your score: {score}',False,(111,196,169))
-        score_message_rect = score_message.get_rect(center = (400,90 ))
+        score_message_rect = score_message.get_rect(center = (400,90))
         screen.blit(game_over,game_over_rect)
         screen.blit(press_space,press_space_rect)
+
 
 
 
