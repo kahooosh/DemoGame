@@ -3,6 +3,9 @@ import pygame, sys
 from sys import exit 
 pygame.init()
 
+def display_score():
+     pygame.time.gets_ticks()
+
 #Creating Display 
 screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
 pygame.display.set_caption('Demo Game') #Title of Window
@@ -41,12 +44,16 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit
             exit()
-        if event.type == pygame.MOUSEBUTTONDOWN: #pos of mouse when moving 
-            if player_rect.collidepoint(event.pos) and player_rect.bottom >= 300: 
-                player_gravity = -20
-        if event.type == pygame.KEYDOWN and player_rect.bottom >= 300:
-            if event.key == pygame.K_SPACE:
-                player_gravity = -20
+        if game_active:
+            if event.type == pygame.MOUSEBUTTONDOWN: #pos of mouse when moving 
+                if player_rect.collidepoint(event.pos) and player_rect.bottom >= 300: 
+                    player_gravity = -20
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and player_rect.bottom >= 300:
+                    player_gravity = -20
+        else:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                game_active = True
 
     if game_active:
         #Putting Surfaces and Rectangles on Display 
