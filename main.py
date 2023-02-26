@@ -92,7 +92,7 @@ while True:
         pygame.draw.rect(screen,'#c0e8ec',score_rect,10,50) #border width
         screen.blit(score_surf,score_rect) 
         """
-        score = display_score(0)
+        score = display_score()
 
         #Enemy_1 Movememnt 
         en1_rect.x -= 4  
