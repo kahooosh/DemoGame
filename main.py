@@ -15,8 +15,8 @@ def display_score():
 screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
 pygame.display.set_caption('Demo Game') #Title of Window
 clock = pygame.time.Clock()
-game_active = True
-start_time = -1
+game_active = False
+start_time = 0
 score = 0
 
 
