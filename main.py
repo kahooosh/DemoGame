@@ -29,7 +29,8 @@ game_over = pygame.transform.rotozoom(game_over,0,2)
 game_over_rect = game_over.get_rect(center = (400,60))
 
 press_space = test_font.render('Press space bar to restart',False,'White')
-press_space_rect = press_space.get_rect(center = (400,300))
+press_space = pygame.transform.rotozoom(press_space,0,0.25)
+press_space_rect = press_space.get_rect(center = (400,350))
 
 en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
 en1_rect = en1_surf.get_rect(bottomright = (600,300))
