@@ -8,6 +8,7 @@ def display_score():
     score_surf = test_font.render(f'Score: {current_time}',False,(64,64,64))
     score_rect = score_surf.get_rect(center = (400,50))
     screen.blit(score_surf,score_rect)
+    return current_time
 
 #Creating Display 
 screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
@@ -15,14 +16,16 @@ pygame.display.set_caption('Demo Game') #Title of Window
 clock = pygame.time.Clock()
 game_active = True
 start_time = 0
+score = 0
 
 #Surfaces and Rectangles
 test_font = pygame.font.Font('graphics/Pixeltype.ttf',50) #(type, size)
 sky_surf = pygame.image.load('graphics/Sky.png').convert()
 ground_surf = pygame.image.load('graphics/ground.png').convert()
 
-score_surf = test_font.render('Demo Game', False, (64,64,64)) #(text, AA, color)
-score_rect = score_surf.get_rect(center = (400,50))
+game_title = test_font.render('Pixel Runner',False,(37,56,74))
+game_title = pygame.transform.rotozoom(game_title,0,2)
+game_title_rect = game_title.get.rect(center = (400,60))
 
 game_over = test_font.render('GAME OVER',False,(37,56,74))
 game_over = pygame.transform.rotozoom(game_over,0,2)
@@ -80,7 +83,7 @@ while True:
         pygame.draw.rect(screen,'#c0e8ec',score_rect,10,50) #border width
         screen.blit(score_surf,score_rect) 
         """
-        display_score()
+        score = display_score()
 
         #Enemy_1 Movememnt 
         en1_rect.x -= 4  
@@ -101,9 +104,17 @@ while True:
         #Collisions
         if en1_rect.colliderect(player_rect): 
             game_active = False 
+    
+    elif score == 0:
+        screen.fill((94,129,162))
+        screen.blit(player_stand,player_stand_rect)
+        screen.blit(press_space,press_space_rect)
+
     else:
         screen.fill((94,129,162))
         screen.blit(player_stand,player_stand_rect)
+        score_message = test_font.render(f'Your score: {score}',False,(111,196,169))
+        score_message_rect = score_message.get_rect(center = (400,90 ))
         screen.blit(game_over,game_over_rect)
         screen.blit(press_space,press_space_rect)
 
