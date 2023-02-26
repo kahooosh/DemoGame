@@ -106,24 +106,18 @@ while True:
             game_active = False 
     
     else:
-        if score == 0:
-            screen.fill((94,129,162))
-            screen.blit(player_stand,player_stand_rect)
-            screen.blit(game_title,game_title_rect)
-            screen.blit(press_space,press_space_rect)
+        screen.fill((94,129,162))
+        screen.blit(player_stand,player_stand_rect)
+        screen.blit(press_space,press_space_rect)
 
-        else:
-            screen.fill((94,129,162))
-            screen.blit(player_stand,player_stand_rect)
+        if score == 0:
+            screen.blit(game_title,game_title_rect)
+
+        elif score != 0:
             score_message = test_font.render(f'Your score: {score}',False,(111,196,169))
-            score_message_rect = score_message.get_rect(center = (400,90))
+            score_message_rect = score_message.get_rect(center = (400,120))
             screen.blit(score_message,score_message_rect)
             screen.blit(game_over,game_over_rect)
-            screen.blit(press_space,press_space_rect)
-
-
-
-
 
     pygame.display.update()
     clock.tick(60) #sets maximum frame rate (fps )
