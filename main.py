@@ -112,7 +112,6 @@ while True:
 
         score_message = test_font.render(f'Your score: {score}',False,(111,196,169))
         score_message_rect = score_message.get_rect(center = (400,100))
-        
 
         if score == 0:
             screen.blit(game_title,game_title_rect)
