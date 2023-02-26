@@ -4,17 +4,17 @@ from sys import exit
 pygame.init()
 
 def display_score():
-    current_time = pygame.time.get_ticks()
+    current_time = pygame.time.get_ticks() - start_time
     score_surf = test_font.render(f'{current_time}',False,(64,64,64))
     score_rect = score_surf.get_rect(center = (400,50))
     screen.blit(score_surf,score_rect)
-    print()
 
 #Creating Display 
 screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
 pygame.display.set_caption('Demo Game') #Title of Window
 clock = pygame.time.Clock()
 game_active = True
+start_time = 0
 
 #Surfaces and Rectangles
 test_font = pygame.font.Font('graphics/Pixeltype.ttf',50) #(type, size)
@@ -59,6 +59,8 @@ while True:
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
+                en1_rect.left = 800
+                start_time = pygame.time.get_ticks()
 
     if game_active:
         #Putting Surfaces and Rectangles on Display 
