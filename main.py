@@ -27,7 +27,7 @@ score_rect = score_surf.get_rect(center = (400,50))
 
 game_over = test_font.render('GAME OVER',False,(37,56,74))
 game_over = pygame.transform.rotozoom(game_over,0,2)
-game_over_rect = game_over.get_rect(center = (400,50))
+game_over_rect = game_over.get_rect(center = (400,60))
 
 en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
 en1_rect = en1_surf.get_rect(bottomright = (600,300))
