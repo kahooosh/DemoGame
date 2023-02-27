@@ -151,6 +151,7 @@ while True:
         screen.fill((94,129,162))
         screen.blit(player_stand,player_stand_rect)
         screen.blit(press_space,press_space_rect)
+        obstacle_rect_list.clear()
 
         score_message = test_font.render(f'Your score: {score}',False,(111,196,169))
         score_message_rect = score_message.get_rect(center = (400,110))
