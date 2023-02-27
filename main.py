@@ -100,7 +100,7 @@ while True:
                 start_time = int(pygame.time.get_ticks()/1000)
 
         if event.type == obstacle_timer and game_active:
-            obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900 - 1100),300)))
+            obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
 
     if game_active:
         #Putting Surfaces and Rectangles on Display 
