@@ -16,7 +16,10 @@ def obstacle_movement(obstacle_list):
         for obstacle_rect in obstacle_list:
             obstacle_rect.x -= 5 
 
-            screen.blit(en1_surf,obstacle_rect)
+            if obstacle_rect == 300:
+                screen.blit(en1_surf,obstacle_rect)
+            else:
+                screen.blit(en2_surf,obstacle_rect)
 
         obstacle_list = [obstacle for obstacle in obstacle_list if obstacle.x > -100]
         
