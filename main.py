@@ -16,9 +16,9 @@ def obstacle_movement(obstacle_list):
         for obstacle_rect in obstacle_list:
             obstacle_rect.c -= 5 
 
-            screen.blit(en1_surf,obstacle_rect
+            screen.blit(en1_surf,obstacle_rect)
         
-        return obstacle_list)
+        return obstacle_list
     else:
         return []
 
