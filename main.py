@@ -17,13 +17,15 @@ def obstacle_movement(obstacle_list):
             obstacle_rect.x -= 5 
 
             screen.blit(en1_surf,obstacle_rect)
+
+        obstacle_list = [obstacle for obstacle in obstacle_list if obstacle.x > -100]
         
         return obstacle_list
     else:
         return []
 
 
-#Creating Display 
+#CREATING DISPLAY 
 screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
 pygame.display.set_caption('Demo Game') #Title of Window
 clock = pygame.time.Clock()
@@ -59,7 +61,8 @@ press_space_rect = press_space.get_rect(center = (400,330))
 
 #Obstacles 
 en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
-en1_rect = en1_surf.get_rect(bottomright = (600,300))
+
+en2_surf = pygame.image.load('graphics/Fly1.png').convert_alpha() #enemy 2 
 
 obstacle_rect_list = []
 
@@ -76,7 +79,7 @@ player_stand_rect = player_stand.get_rect(center = (400,200))
 
 #Timer 
 obstacle_timer = pygame.USEREVENT + 1
-pygame.time.set_timer(obstacle_timer,900) #(event we want to trigger, how often to trigger in millisec.)
+pygame.time.set_timer(obstacle_timer,1500) #(event we want to trigger, how often to trigger in millisec.)
 
 
 #DRAW ALL ELEMENTS AND UPDATE
@@ -100,14 +103,17 @@ while True:
                 start_time = int(pygame.time.get_ticks()/1000)
 
         if event.type == obstacle_timer and game_active:
-            obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
+            if randint(0,2):
+                obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
+            else:
+                obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))
 
     if game_active:
         #Putting Surfaces and Rectangles on Display 
         screen.blit(sky_surf, (0,0)) # (0,0) is top left 
             #Blit = Block image transfer, one surface on another; arguement = (surface, pos)
         screen.blit(ground_surf, (0,300))
-        """
+        """ Demo Game TItle 
         pygame.draw.rect(screen,'#c0e8ec',score_rect) #(display, color, rect)
         pygame.draw.rect(screen,'#c0e8ec',score_rect,10,50) #border width
         screen.blit(score_surf,score_rect) 
