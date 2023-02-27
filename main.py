@@ -16,10 +16,8 @@ def obstacle_movement(obstacle_list):
         for obstacle_rect in obstacle_list:
             obstacle_rect.x -= 5 
 
-            if obstacle_rect.bottom == 300:
-                screen.blit(en1_surf,obstacle_rect)
-            else:
-                screen.blit(en2_surf,obstacle_rect)
+            if obstacle_rect.bottom == 300: screen.blit(en1_surf,obstacle_rect)
+            else: screen.blit(en2_surf,obstacle_rect)
 
         obstacle_list = [obstacle for obstacle in obstacle_list if obstacle.x > -100]
         
@@ -27,6 +25,11 @@ def obstacle_movement(obstacle_list):
     else:
         return []
 
+def collisions(player,obstacles):
+    if obstacles:
+        for obstacle_rect in obstacles:
+            if player.colliderect(obstacle_rect): return False
+    return True 
 
 #CREATING DISPLAY 
 screen = pygame.display.set_mode((800,400)) #Creates window ((width,height))
@@ -35,7 +38,6 @@ clock = pygame.time.Clock()
 game_active = False
 start_time = 0
 score = 0
-
 
 #SURFACES AND RECTANGLES 
 """
@@ -84,7 +86,6 @@ player_stand_rect = player_stand.get_rect(center = (400,200))
 obstacle_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(obstacle_timer,1500) #(event we want to trigger, how often to trigger in millisec.)
 
-
 #DRAW ALL ELEMENTS AND UPDATE
 while True: 
     for event in pygame.event.get():
@@ -105,10 +106,8 @@ while True:
                 start_time = int(pygame.time.get_ticks()/1000)
 
         if event.type == obstacle_timer and game_active:
-            if randint(0,2):
-                obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
-            else:
-                obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))
+            if randint(0,2): obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
+            else: obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))
 
     if game_active:
         #Putting Surfaces and Rectangles on Display 
@@ -144,7 +143,8 @@ while True:
         obstacle_rect_list = obstacle_movement(obstacle_rect_list)
 
 
-        #Collision 
+        #Collisions
+        game_active = collisions(player_rect,obstacle_rect_list)
     
     #Title and Game Over Screen  
     else:
@@ -155,8 +155,8 @@ while True:
         score_message = test_font.render(f'Your score: {score}',False,(111,196,169))
         score_message_rect = score_message.get_rect(center = (400,110))
 
-        if score == 0:
-            screen.blit(game_title,game_title_rect)  
+        if score == 0:screen.blit(game_title,game_title_rect)  
+
         else:
             screen.blit(game_over,game_over_rect)
             screen.blit(score_message,score_message_rect)
