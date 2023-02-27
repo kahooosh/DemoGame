@@ -99,7 +99,6 @@ while True:
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
-                en1_rect.left = 800
                 start_time = int(pygame.time.get_ticks()/1000)
 
         if event.type == obstacle_timer and game_active:
@@ -142,9 +141,7 @@ while True:
         obstacle_rect_list = obstacle_movement(obstacle_rect_list)
 
 
-        #Collisions
-        if en1_rect.colliderect(player_rect): 
-            game_active = False 
+        #Collision 
     
     #Title and Game Over Screen  
     else:
