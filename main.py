@@ -4,6 +4,47 @@ from sys import exit
 from random import randint
 pygame.init()
 
+class Player(pygame.sprite.Sprite):
+
+    #load image 
+    def __init__(self):
+        super().__init__()
+        player_walk_1 = pygame.image.load('graphics/player_walk_1.png').convert_alpha() #player
+        player_walk_2 = pygame.image.load('graphics/player_walk_2.png').convert_alpha()
+        self.player_walk = [player_walk_1,player_walk_2]
+        self.player_index = 0
+        self.player_jump = pygame.image.load('graphics/jump.png').convert_alpha()
+
+        self.image = self.player_walk(self.player_index )
+        self.rect = self.image.get_rect(midbottom = (200,300))
+        self.gravity = 0 
+
+    #player jump 
+    def player_input(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
+            self.gravity = -20
+
+    #gravity 
+    def apply_gravity(self):
+        self.gravity += 1 
+        self.rect.y += self.gravity
+        if self.rect.bottom >= 300: self.rect.bottom = 300
+
+    def animation_state(self):
+        if self.rect.bottom < 300:
+            self.image = self.jump 
+        else:     
+            self.player_index += 0.1
+            if self.player_index >= len(self.player_walk): self.player_index = 0
+            self.image = self.player_walk[int(self.player_index)]
+
+
+    def update(self):
+        self.player_input()
+        self.apply_gravity()
+
+
 def display_score():
     current_time = int(pygame.time.get_ticks()/1000) - start_time
     score_surf = test_font.render(f'Score: {current_time}',False,(64,64,64))
@@ -52,6 +93,9 @@ clock = pygame.time.Clock()
 game_active = False
 start_time = 0
 score = 0
+
+player = pygame.sprite.GroupSingle()
+player.add(Player())
 
 #SURFACES AND RECTANGLES 
 """
@@ -164,7 +208,22 @@ while True:
         pygame.draw.rect(screen,'#c0e8ec',score_rect,10,50) #border width
         screen.blit(score_surf,score_rect) 
         """
+
         score = display_score()
+
+        #Player Movement 
+        player_gravity += 1 
+        player_rect.y += player_gravity
+        if player_rect.bottom >= 300: player_rect.bottom = 300
+        screen.blit(player_surf,player_rect)
+        player_animation()
+        screen.blit(player_surf,player_rect)
+        player.draw(screen)
+        player.update()
+
+
+        #Obstacle  Movement
+        obstacle_rect_list = obstacle_movement(obstacle_rect_list)
 
         """
         #Enemy_1 Movememnt 
@@ -176,17 +235,6 @@ while True:
         en1_x_pos -= 4 #moves to left every loop
         if en1_x_pos < -100: en1_x_pos = 800 #brings back en1 to the right side 
         """
-
-        #Player Movement 
-        player_gravity += 1 
-        player_rect.y += player_gravity
-        if player_rect.bottom >= 300:
-            player_rect.bottom = 300
-        screen.blit(player_surf,player_rect)
-        player_animation()
-
-        #Obstacle  Movement
-        obstacle_rect_list = obstacle_movement(obstacle_rect_list)
 
 
         #Collisions
