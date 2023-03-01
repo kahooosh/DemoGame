@@ -140,7 +140,7 @@ while True:
                 game_active = True
                 start_time = int(pygame.time.get_ticks()/1000)
 
-        if game_active
+        if game_active:
             if event.type == obstacle_timer:
                 if randint(0,2): obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
                 else: obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))
