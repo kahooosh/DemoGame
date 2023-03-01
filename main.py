@@ -79,9 +79,17 @@ press_space = pygame.transform.rotozoom(press_space,0,0.80)
 press_space_rect = press_space.get_rect(center = (400,330))
 
 #Obstacles 
-en1_surf = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
+en1_frame_1 = pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
+en1_frame_2 = pygame.image.load('graphics/snail2.png').convert_alpha()
+en1_frames = [en1_frame_1,en1_frame_2]
+en1_frame_index = 0 
+en1_surf = en1_frames[en1_frame_index]
 
-en2_surf = pygame.image.load('graphics/Fly1.png').convert_alpha() #enemy 2 
+en2_frame_1 = pygame.image.load('graphics/Fly1.png').convert_alpha() #enemy 2 
+en2_frame_2 = pygame.image.load('graphics/Fly2.png').convert_alpha()
+en2_frames = [en2_frame_1,en2_frame_2]
+en2_frame_index = 0
+en2_surf = en2_frames[en2_frame_index]
 
 obstacle_rect_list = []
 
@@ -98,6 +106,7 @@ player_rect = player_surf.get_rect(midbottom = (80,300))
     #(left,top,width,height)
     #(topleft = (x,y))
 player_gravity = 0 
+
 player_stand = pygame.image.load('graphics/player_stand.png').convert_alpha()
 player_stand = pygame.transform.rotozoom(player_stand,0,1.5) #(surf,rotation,scale); scales and rotate 
 player_stand_rect = player_stand.get_rect(center = (400,200))
@@ -105,6 +114,12 @@ player_stand_rect = player_stand.get_rect(center = (400,200))
 #Timer 
 obstacle_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(obstacle_timer,1500) #(event we want to trigger, how often to trigger in millisec.)
+
+en1_animation_timer = pygame.USEREVENT + 2
+pygame.time.set_timer(en1_animation_timer,500)
+
+en2_animation_timer = pygame.USEREVENT + 3
+pygame.time.set_timer(en2_animation_timer,300)
 
 #DRAW ALL ELEMENTS AND UPDATE
 while True: 
@@ -125,9 +140,19 @@ while True:
                 game_active = True
                 start_time = int(pygame.time.get_ticks()/1000)
 
-        if event.type == obstacle_timer and game_active:
-            if randint(0,2): obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
-            else: obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))
+        if game_active
+            if event.type == obstacle_timer:
+                if randint(0,2): obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
+                else: obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))
+            if event.type == en1_animation_timer:
+                if en1_frame_index == 0: en1_frame_index = 1
+                else: en1_frame_index = 0 
+                en1_surf = en1_frames[en1_frame_index]
+            if event.type == en2_animation_timer:
+                if en2_frame_index == 0: en2_frame_index = 1
+                else: en2_frame_index = 0 
+                en2_surf = en2_frames[en2_frame_index]
+
 
     if game_active:
         #Putting Surfaces and Rectangles on Display 
