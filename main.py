@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.player_jump = pygame.image.load('graphics/jump.png').convert_alpha()
 
         self.image = self.player_walk[self.player_index]
-        self.rect = self.image.get_rect(midbottom = (200,300))
+        self.rect = self.image.get_rect(midbottom = (80,300))
         self.gravity = 0 
 
     #player jump 
@@ -45,7 +45,7 @@ class Player(pygame.sprite.Sprite):
         self.apply_gravity()
         self.animation_state()
 
-class Obstacle(pygame.sprite.Sprite):
+class Obstacle(pygame.sprite.Sprite):  
     def __init__(self,type):
         super().__init__()
 
@@ -77,7 +77,6 @@ class Obstacle(pygame.sprite.Sprite):
         self.animation_state()
         self.rect.x -= 6 
         self.destroy()
-  
 
 def display_score():
     current_time = int(pygame.time.get_ticks()/1000) - start_time
@@ -251,19 +250,21 @@ while True:
         score = display_score()
 
         #Player Movement 
-        player_gravity += 1 
+        """player_gravity += 1 
         player_rect.y += player_gravity
         if player_rect.bottom >= 300: player_rect.bottom = 300
         screen.blit(player_surf,player_rect)
         player_animation()
-        screen.blit(player_surf,player_rect)
+        screen.blit(player_surf,player_rect)""" 
         player.draw(screen)
         player.update()
 
+        obstacle_group.draw(screen)
+        obstacle_group.update()
 
         #Obstacle  Movement
-        obstacle_rect_list = obstacle_movement(obstacle_rect_list)
-        obstacle_group.draw(screen)
+        """obstacle_rect_list = obstacle_movement(obstacle_rect_list)
+        obstacle_group.draw(screen)"""
 
         """
         #Enemy_1 Movememnt 
