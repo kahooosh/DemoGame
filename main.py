@@ -105,6 +105,11 @@ def collisions(player,obstacles):
             if player.colliderect(obstacle_rect): return False
     return True 
 
+def collision_sprite():
+    if pygame.sprite.spritecollide(player.sprite,obstacle_group,False): #sprite, group, boolean 
+        return False 
+    else: True  
+
 def player_animation():
     global player_surf, player_index
 
@@ -229,7 +234,7 @@ while True:
             if event.type == en1_animation_timer:
                 if en1_frame_index == 0: en1_frame_index = 1
                 else: en1_frame_index = 0 
-                en1_surf = en1_frames[en1_frame_index]
+                en1_surf = en1_frames[en1_frame_index]  
             if event.type == en2_animation_timer:
                 if en2_frame_index == 0: en2_frame_index = 1 
                 else: en2_frame_index = 0 
@@ -279,7 +284,8 @@ while True:
 
 
         #Collisions
-        game_active = collisions(player_rect,obstacle_rect_list)
+        game_active = collision_sprite()
+        #game_active = collisions(player_rect,obstacle_rect_list)
     
     #Title and Game Over Screen  
     else:
