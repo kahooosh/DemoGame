@@ -106,7 +106,8 @@ def collisions(player,obstacles):
     return True 
 
 def collision_sprite():
-    if pygame.sprite.spritecollide(player.sprite,obstacle_group,False): #sprite, group, boolean 
+    if pygame.sprite.spritecollide(player.sprite,obstacle_group,True):
+        obstacle_group.empty()
         return False 
     else: True  
 
