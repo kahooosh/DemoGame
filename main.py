@@ -1,9 +1,10 @@
 #Importing and initiallizing pygame 
+import random
 import pygame, sys 
 from sys import exit 
-from random import randint
+from random import randint. choice
 pygame.init()
-
+ 
 class Player(pygame.sprite.Sprite):
 
     #load image 
@@ -39,12 +40,44 @@ class Player(pygame.sprite.Sprite):
             if self.player_index >= len(self.player_walk): self.player_index = 0
             self.image = self.player_walk[int(self.player_index)]
 
-
     def update(self):
         self.player_input()
         self.apply_gravity()
         self.animation_state()
 
+class Obstacle(pygame.sprite.Sprite):
+    def __init__(self,type):
+        super().__init__()
+
+        if type == 'en2':
+            en2_1 =  pygame.image.load('graphics/fly1.png').convert_alpha() #enemy 1 
+            en2_2 = pygame.image.load('graphics/fly2.png').convert_alpha()
+            self.frames = [en2_1,en2_2]
+            y_pos = 210
+        else:
+            en1_1 =  pygame.image.load('graphics/snail1.png').convert_alpha() #enemy 1 
+            en1_2 = pygame.image.load('graphics/snail2.png').convert_alpha()
+            self.frames = [en1_1,en1_2]
+            y_pos = 300
+
+        self.animation_index = 0 
+        self.image = self.frames[self.animation_index]
+        self.rect = self.image.get_rect(midbottom = (random.randint(900,1100),y_pos))
+
+    def animation_state(self):
+        self.animation_index += 0.1 
+        if self.animation_index >= len(self.frames): self.animation_index = 0 
+        self.image - self.frames[int(self.animation_index)] 
+
+    def destroy():
+        if self.rect.x <= -100:
+            self.kill()
+
+    def update(self):
+        self.animation_state()
+        self.rect.x -= 6 
+        self.destroy()
+  
 
 def display_score():
     current_time = int(pygame.time.get_ticks()/1000) - start_time
@@ -95,8 +128,11 @@ game_active = False
 start_time = 0
 score = 0
 
+#Groups 
 player = pygame.sprite.GroupSingle()
 player.add(Player())
+
+obstacle_group = pygame.sprite.Group() 
 
 #SURFACES AND RECTANGLES 
 """
@@ -187,14 +223,16 @@ while True:
 
         if game_active:
             if event.type == obstacle_timer:
-                if randint(0,2): obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
-                else: obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))
+                obstacle_group.add(Obstacle(choice(['fly','snail','snail','snail']))
+                """if randint(0,2): obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
+                else: obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))"""
+
             if event.type == en1_animation_timer:
                 if en1_frame_index == 0: en1_frame_index = 1
                 else: en1_frame_index = 0 
                 en1_surf = en1_frames[en1_frame_index]
             if event.type == en2_animation_timer:
-                if en2_frame_index == 0: en2_frame_index = 1
+                if en2_frame_index == 0: en2_frame_index = 1 
                 else: en2_frame_index = 0 
                 en2_surf = en2_frames[en2_frame_index]
 
@@ -225,6 +263,7 @@ while True:
 
         #Obstacle  Movement
         obstacle_rect_list = obstacle_movement(obstacle_rect_list)
+        obstacle_group.draw(screen)
 
         """
         #Enemy_1 Movememnt 
