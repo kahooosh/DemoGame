@@ -67,7 +67,7 @@ class Obstacle(pygame.sprite.Sprite):
     def animation_state(self):
         self.animation_index += 0.1 
         if self.animation_index >= len(self.frames): self.animation_index = 0 
-        self.image - self.frames[int(self.animation_index)] 
+        self.image = self.frames[int(self.animation_index)] 
 
     def destroy():
         if self.rect.x <= -100:
