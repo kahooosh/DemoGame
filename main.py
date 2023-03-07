@@ -223,7 +223,7 @@ while True:
 
         if game_active:
             if event.type == obstacle_timer:
-                obstacle_group.add(Obstacle(choice(['fly','snail','snail','snail']))
+                obstacle_group.add(Obstacle(choice(['fly','snail','snail','snail'])))
                 """if randint(0,2): obstacle_rect_list.append(en1_surf.get_rect(bottomright = (randint(900,1100),300)))
                 else: obstacle_rect_list.append(en2_surf.get_rect(bottomright = (randint(900,1100),210)))"""
 
