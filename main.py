@@ -2,7 +2,7 @@
 import random
 import pygame, sys 
 from sys import exit 
-from random import randint. choice
+from random import randint, choice
 pygame.init()
  
 class Player(pygame.sprite.Sprite):
